@@ -12,22 +12,18 @@ Email: zhuoyan.xu@wisc.edu
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-
-library(knitr)
-opts_chunk$set(
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE,
   cache = TRUE,
+  collapse = TRUE,
+  comment = "#>",
   dpi = 200,
+  echo = TRUE,
   fig.align = "center",
-  out.width = 650,
   fig.height = 8,
-  fig.width = 8
-  )
+  fig.width = 8,
+  message = FALSE,
+  out.width = 650,
+  warning = FALSE
+)
 ```
 
 ```{r setup, message=FALSE}
@@ -41,14 +37,14 @@ theme_set(theme_minimal())
 
 # Part 1: Basic Example of running 
 ```{r, message=FALSE, fig.width= 11, fig.height=8}
-waveST = waveST(data = raws[,1:5])
+wave = waveST(data = raws[,1:5])
 
-waveST = decompose(waveST, "raw", "SVD", K = 5)
-plot(waveST, k = 1, wave = FALSE)
+decomp = decompose(wave, "raw", "SVD", K = 5)
+plot(decomp, k = 1, wave = FALSE)
 
 
-waveST = decompose(waveST, "wave", "SVD", K = 5, tau = 40)
-plot(waveST, k = 1, wave = TRUE)
+decomp = decompose(wave, "wave", "SVD", K = 5, tau = 40)
+plot(decomp, k = 1, wave = TRUE)
 ```
 
 
@@ -96,21 +92,20 @@ truth = FctGenes %*% LoadGenes
 
 ## we generate data by add random noise
 raws = truth + matrix(rnorm(prod(dim(truth)), mean = 0, sd = 190), nrow = dim(truth)[1], ncol = dim(truth)[2])
-
-waveST = waveST(data = raws %>% as.tibble())
+wave = waveST(data = raws)
 ```
 
 ## Step 2: Construct class and apply SVD with or without wavelet.
 Without wavelet:
 ```{r, fig.width= 11, fig.height=8}
-waveST = decompose(waveST, "raw", "SVD", K = 5)
-plot(waveST, k = 1, wave = FALSE)
+decomp = decompose(wave, "raw", "SVD", K = 5)
+plot(decomp, k = 1, wave = FALSE)
 ```
 
 With wavelet:
 ```{r, fig.width= 11, fig.height=8}
-waveST = decompose(waveST, "wave", "SVD", K = 5, tau = 40)
-plot(waveST, k = 1, wave = TRUE)
+decomp = decompose(wave, "wave", "SVD", K = 5, tau = 40)
+plot(decomp, k = 1, wave = TRUE)
 ```
 
 
@@ -128,15 +123,15 @@ viz = res$viz; df = res$df
 ## Step 2: Construct class and apply SVD with or without wavelet.
 Without wavelet:
 ```{r, fig.width= 11, fig.height=8}
-waveST = waveST(data = df[,1:5], spatial = viz)
-waveST = decompose(waveST, "raw", "SVD", K = 5)
-plot(waveST, k = 1, wave = FALSE)
+wave = waveST(data = df[,1:5], spatial = viz)
+decomp = decompose(wave, "raw", "SVD", K = 5)
+plot(decomp, k = 1, wave = FALSE)
 ```
 
 With wavelet:
 ```{r,  fig.width= 11, fig.height=8}
-waveST = decompose(waveST, "wave", "SVD", K = 5, tau = 40)
-plot(waveST, k = 1, wave = TRUE)
+decomp = decompose(wave, "wave", "SVD", K = 5, tau = 40)
+plot(decomp, k = 1, wave = TRUE)
 ```
 
 
