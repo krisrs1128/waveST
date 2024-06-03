@@ -84,10 +84,10 @@ waveST = function(data, spatial = NA, input = NA, level = 6) {
     ## gridValue is coor image, gridls is a long list with length p (num of genes),
     gridls = gridGeneRaw(spatial, data, level = level)
 
-    suppressMessages(
+    suppressMessages({
       input = gridls %>%
         map_dfc(~ as.vector(.))
-    )
+    })
   }
   new("waveST", data = data, spatial = spatial, input = input)
 }
