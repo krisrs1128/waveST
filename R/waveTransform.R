@@ -8,7 +8,7 @@
 #'@export
 #'@param x length D^2 vector, vectorized matrix for DWT
 #'@param wf name of the wavelet filter to use
-#'@param J depth of the wavelet basis decomposition, must be a number less than or equal to log(min{M,N},2)
+#'@param J depth of the wavelet basis decomposition, must be a number less than or equal to log(min(M,N),2)
 #'@param thresholdMethod wavelet shrinkage method used  "hybrid" thresholding or "manual" thresholding, see "details"
 #'@param tau constant threshold when using manual thresholding
 #'@return a \code{tibble} with two columns, \code{level} and \code{coef}, see details
