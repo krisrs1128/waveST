@@ -15,6 +15,8 @@
 \item{wave}{whether use wavelet method}
 
 \item{...}{Plot parameters forwarded.}
+
+\item{y}{the missing signature we do not use}
 }
 \value{
 A plot object.

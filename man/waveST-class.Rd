@@ -10,9 +10,11 @@ The waveST class stores the data and additional result after computing.
 \details{
 If \code{spatial} is not given, the class assumes the data is generated input: location(D^2)-by-gene(2).
 The class set \code{input} = \code{data}, this is useful when we already have location(D^2)-by-gene(2)
-matrix (like settings in simulations).\preformatted{      The content of \code{output} depends on whether use wavelet, and the decomposition methods.
+matrix (like settings in simulations).
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{      The content of \code{output} depends on whether use wavelet, and the decomposition methods.
       The  \code{output} is NA once created. The values will be updated once called \code{\link{decompse}}.
-}
+}\if{html}{\out{</div>}}
 }
 \note{
 The decomposition in this package require a waveST input.
