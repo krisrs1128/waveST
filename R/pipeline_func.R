@@ -235,22 +235,11 @@ coorToGridGene = function(viz, gene, level = 6){
 ### df: raw matrix n*p
 gridGeneRaw = function(viz, df, level = 6){
   ## apply coorToGrid to each column of raws
-  gridls = 1:dim(df)[2] %>%
-    map(~ coorToGridGene(viz, gene = df[,.x], level = level))
-  return(gridls)
+  df <- as.data.frame(df)
+  viz <- as.data.frame(viz)
+  colnames(viz) <- c("x", "y")
+  map(seq_len(ncol(df)), ~ coorToGridGene(viz, gene = df[[.x]], level = level))
 }
-
-# gridls = gridGeneRaw(viz, df)
-# gridtoy = gridGeneRaw(viz, df[,1:5])
-
-# lay = layout(matrix(1:6,2,3,byrow = TRUE))
-# gridtoy %>% 
-#   map(~.x/sqrt(sum(.x^2))) %>%
-#   map(~image.plot(.x, asp = 1))
-# layout(1)
-
-
-# threshold_coef(viz, geneID = 1,  wf = "d4", J = 4, hard = TRUE)
 
 ## Different SNR to on simulation pipelines
 ## @ R 1/SNR = 1/(signal to noise ratio)

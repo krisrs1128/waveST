@@ -107,7 +107,7 @@ waveST <- function(data, spatial = NA, input = NA, level = 6) {
 #'@param K The estimated number of factors, use "elbow" method to estimate it if not given
 #'@param bar threshold for selecting number of factors, \code{K}, useless if \code{is already given}, see "details"
 #'@param wf name of the wavelet filter to use
-#'@param J depth of the wavelet basis decomposition, must be a number less than or equal to log(min{M,N},2)
+#'@param J depth of the wavelet basis decomposition, must be a number less than or equal to log(min(M,N),2)
 #'@param thresholdMethod wavelet shrinkage method used  "hybrid" thresholding or "manual" thresholding, see "details"
 #'@param tau constant threshold when using manual thresholding
 #'@return a \code{\link{waveST}} object with \code{output} updated, see "details"

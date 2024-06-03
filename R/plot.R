@@ -7,17 +7,14 @@ theme_set(theme_minimal())
 #'@docType methods
 #'@export
 #'@param x An object of class \code{\link{waveST}}.
-#@param y the missing signature we do not use
-#@param waveST An object of class \code{\link{waveST}}.
+#'@param y the missing signature we do not use
 #'@param k which factor gene to visualize
 #'@param wave whether use wavelet method
 #'@param ... Plot parameters forwarded.
 #'@return A plot object.
-#'@examples 
 methods::setMethod(
   "plot",
   c(x = "waveST", y = "missing"),
-  #c(waveST = "waveST", k = "numeric", wave = "logical"),
   function(x, k = 1, wave = TRUE, ...) {
   
   waveST <- x
@@ -35,13 +32,11 @@ methods::setMethod(
       order(decreasing = T)
     
     waveST@input[,ids[1:5]] %>%
-      #map(~.x/sqrt(sum(.x^2))) %>%
       map(~ matrix(.x, nrow = sqrt(length(.x)))) %>%
       map(~image(.x, asp = 1, xaxt = "n", yaxt = "n"))
   } else if(wave){
     waveST@output$f[,k] %>% 
       InvWaveTrans(., waveST@input %>% as.matrix()) %>%
-      #image.plot(., asp = 1)
       image(., asp = 1, xaxt = "n", yaxt = "n")
     
     
@@ -49,13 +44,18 @@ methods::setMethod(
       abs() %>%
       order(decreasing = T)
     
-    waveST@input[,ids[1:5]] %>% 
-      map_dfc(~ WaveTransCoefs(.x,  wf = "d4", J = 5, thresholdMethod = "manual", tau = 40)) %>% 
-      map(~ InvWaveTrans(.x, raws = waveST@input %>% as.matrix())) %>%
-      map_dfc(~as.vector(.)) %>%
-      map(~ matrix(.x, nrow = sqrt(length(.x)))) %>%
-      #map(~image.plot(.x, asp = 1))
-      map(~image(.x, asp = 1, xaxt = "n", yaxt = "n"))
+    for (j in seq_len(5)) {
+      if (!is.matrix(waveST@input)) {
+        waveST@input <- as.matrix(waveST@input)
+      }
+
+      waveST@input[, j] %>% 
+        WaveTransCoefs(wf = "d4", J = 5, thresholdMethod = "manual", tau = 40) %>%
+        unlist() %>%
+        InvWaveTrans(raws = waveST@input %>% as.matrix()) %>%
+        matrix(., nrow = sqrt(length(.))) %>%
+        image(., asp = 1, xaxt = "n", yaxt = "n")
+    }
   }
   layout(1)
 })
