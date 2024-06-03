@@ -7,7 +7,6 @@ theme_set(theme_minimal())
 #' @docType methods
 #' @export
 #' @param x An object of class \code{\link{waveST}}.
-#' @param y the missing signature we do not use
 #' @param k which factor gene to visualize
 #' @param wave whether use wavelet method
 #' @param ... Plot parameters forwarded.

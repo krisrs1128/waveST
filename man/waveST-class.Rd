@@ -30,7 +30,7 @@ The decomposition in this package require a waveST input.
 }
 
 \examples{
-wave = new("waveST", data = matrix(rnorm(6),2,3))
+wave = new("waveST", data = matrix(rnorm(6), 2, 3))
 }
 \author{
 Zhuoyan Xu \email{zhuoyan.xu@wisc.edu}

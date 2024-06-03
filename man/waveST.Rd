@@ -32,7 +32,8 @@ matrix (like settings in simulations).
 }\if{html}{\out{</div>}}
 }
 \examples{
-res = kOverA_ST(k = 3,A = 7)
-viz = res$viz; df = res$df
+res = kOverA_ST(k = 3, A = 7)
+viz = res$viz
+df = res$df
 wave = waveST(data = df, spatial = viz)
 }
