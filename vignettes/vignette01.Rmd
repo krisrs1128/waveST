@@ -31,21 +31,10 @@ opts_chunk$set(
 ```
 
 ```{r setup, message=FALSE}
-if (!require("waveST")) {      
-  install.packages("waveST")   
-  stopifnot(require("waveST"))
-}
-if (!require("tidyverse")) {      
-  install.packages("tidyverse")   
-  stopifnot(require("tidyverse"))
-}
-if (!require("fields")) {      
-  install.packages("fields")   
-  stopifnot(require("fields"))
-}
+library(waveST)
+library(fields)
+library(tidyverse)
 theme_set(theme_minimal())
-
-
 ```
 
 
